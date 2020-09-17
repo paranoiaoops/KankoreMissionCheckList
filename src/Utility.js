@@ -16,3 +16,17 @@ export function createProgressData (missionData, progressData) {
     }
     return progressData;
 }
+
+/**
+ * HTMLの表示のためにデータ整形する処理
+ * @param missionData
+ * @param progressData
+ * @return object
+ */
+export function createDisplayData (missionData, progressData) {
+    for (let k in missionData) {
+        missionData[k]["progress"] = progressData[k]["progress"];
+        missionData[k]["display_flag"] = progressData[k]["display_flag"];
+    }
+    return missionData;
+}
