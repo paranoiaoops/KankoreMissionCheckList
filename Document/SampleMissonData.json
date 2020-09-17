@@ -1,0 +1,36 @@
+{
+  "1" : {
+    "mission" : "サンプル",
+    "mission_type" : "monthly",
+    "terms" : "",
+    "area" : {
+      "1" : {
+        "area_number" : "1-5",
+        "achievement_conditions" : "A"
+      },
+      "2" : {
+        "area_number" : "1-5",
+        "achievement_conditions" : "A"
+      },
+      "3" : {
+        "area_number" : "1-5",
+        "achievement_conditions" : "A"
+      }
+    }
+  },
+  "2" : {
+    "mission" : "サンプル2",
+    "mission_type" : "quarterly",
+    "terms" : "軽巡旗艦",
+    "area" : {
+      "1" : {
+        "area_number" : "1-5",
+        "achievement_conditions" : "A"
+      },
+      "2" : {
+        "area_number" : "2-5",
+        "achievement_conditions" : "A"
+      }
+    }
+  }
+}
