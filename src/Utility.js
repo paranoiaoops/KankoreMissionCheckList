@@ -10,7 +10,8 @@ export function createProgressData (missionData, progressData) {
                 }
             }
             progressData[k] = {
-                "progress" : progressDataObject
+                "progress" : progressDataObject,
+                "display_flag" : false
             }
         }
     }

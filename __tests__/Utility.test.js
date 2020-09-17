@@ -56,7 +56,8 @@ describe("任務用のJSONから進捗管理用のJSONする処理", () =>{
                         "clear" : false,
                         "url" : ""
                     }
-                }
+                },
+                "display_flag" : false
             },
             "2" : {
                 "progress" : {
@@ -68,7 +69,8 @@ describe("任務用のJSONから進捗管理用のJSONする処理", () =>{
                         "clear" : false,
                         "url" : ""
                     }
-                }
+                },
+                "display_flag" : false
             }
         };
         expect(createProgressData(sampleMissionData, {})).toStrictEqual(toBeObject);
@@ -91,7 +93,8 @@ describe("任務用のJSONから進捗管理用のJSONする処理", () =>{
                         "clear" : false,
                         "url" : ""
                     }
-                }
+                },
+                "display_flag" : false
             },
             "2" : {
                 "progress" : {
@@ -103,7 +106,8 @@ describe("任務用のJSONから進捗管理用のJSONする処理", () =>{
                         "clear" : false,
                         "url" : ""
                     }
-                }
+                },
+                "display_flag" : false
             }
         };
         expect(createProgressData(sampleMissionData, toBeObject)).toStrictEqual(toBeObject);
@@ -125,7 +129,8 @@ describe("任務用のJSONから進捗管理用のJSONする処理", () =>{
                         "clear" : false,
                         "url" : ""
                     }
-                }
+                },
+                "display_flag" : false
             }
         };
 
@@ -144,7 +149,8 @@ describe("任務用のJSONから進捗管理用のJSONする処理", () =>{
                         "clear" : false,
                         "url" : ""
                     }
-                }
+                },
+                "display_flag" : false
             },
             "2" : {
                 "progress" : {
@@ -156,7 +162,8 @@ describe("任務用のJSONから進捗管理用のJSONする処理", () =>{
                         "clear" : false,
                         "url" : ""
                     }
-                }
+                },
+                "display_flag" : false
             }
         }
 
