@@ -1,5 +1,5 @@
 import {test, describe, expect} from "@jest/globals";
-import {createProgressData, createDisplayData}from "../src/Utility";
+import {createProgressData, createDisplayData, pickUpAreaData, checkAreaData}from "../src/Utility";
 
 describe("任務用のJSONから進捗管理用のJSONする処理", () =>{
 
@@ -362,4 +362,144 @@ describe("HTML描画用のデータ整形処理", () => {
 
        expect(createDisplayData(missionData, progressData)).toStrictEqual(toBeObject);
    });
+});
+
+describe("同一海域情報を抽出する処理", () => {
+
+    test("areaデータで同一データがあるかどうかをチェックするための処理", () => {
+        const areaTestData = {
+            "1" : {
+                "area_number" : "1-5",
+                "achievement_conditions" : "A"
+            },
+            "2" : {
+                "area_number" : "1-5",
+                "achievement_conditions" : "A"
+            },
+            "3" : {
+                "area_number" : "1-5",
+                "achievement_conditions" : "A"
+            }
+        }
+
+        expect(checkAreaData(areaTestData, "1-5")).toStrictEqual(["1", "2", "3"]);
+        expect(checkAreaData(areaTestData, "1-3")).toStrictEqual([]);
+        expect(checkAreaData({
+            "1" : {
+                "area_number" : "2-4",
+                "achievement_conditions" : "A"
+            },
+            "2" : {
+                "area_number" : "2-3",
+                "achievement_conditions" : "A"
+            }
+        }, "1-5")).toStrictEqual([]);
+        expect(checkAreaData({
+            "1" : {
+                "area_number" : "2-4",
+                "achievement_conditions" : "A"
+            },
+            "2" : {
+                "area_number" : "2-3",
+                "achievement_conditions" : "A"
+            }
+        }, "2-3")).toStrictEqual(["2"]);
+    });
+
+    test("同一海域がある場合の処理", () =>{
+        const missionTestData = {
+            "1" : {
+                "mission" : "サンプル",
+                "mission_type" : "yearly",
+                "terms" : "",
+                "area" : {
+                    "1" : {
+                        "area_number" : "1-5",
+                        "achievement_conditions" : "A"
+                    },
+                    "2" : {
+                        "area_number" : "1-5",
+                        "achievement_conditions" : "A"
+                    },
+                    "3" : {
+                        "area_number" : "1-5",
+                        "achievement_conditions" : "A"
+                    }
+                }
+            },
+            "2" : {
+                "mission" : "サンプル2",
+                "mission_type" : "quarterly",
+                "terms" : "軽巡旗艦",
+                "area" : {
+                    "1" : {
+                        "area_number" : "1-5",
+                        "achievement_conditions" : "A"
+                    },
+                    "2" : {
+                        "area_number" : "2-5",
+                        "achievement_conditions" : "A"
+                    }
+                }
+            },
+            "3" : {
+                "mission" : "サンプル3",
+                "mission_type" : "monthly",
+                "terms" : "",
+                "area" : {
+                    "1" : {
+                        "area_number" : "5-4",
+                        "achievement_conditions" : "S"
+                    },
+                    "2" : {
+                        "area_number" : "5-5",
+                        "achievement_conditions" : "S"
+                    }
+                }
+            }
+        };
+
+
+        expect(pickUpAreaData(missionTestData,"1", "1-5")).toStrictEqual(
+            {
+                "2" : {
+                    "mission" : "サンプル2",
+                    "mission_type" : "quarterly",
+                    "terms" : "軽巡旗艦",
+                    "area" : {
+                        "1" : {
+                            "area_number" : "1-5",
+                            "achievement_conditions" : "A"
+                        }
+                    }
+                }
+            }
+        );
+
+        expect(pickUpAreaData(missionTestData,"2", "1-5")).toStrictEqual(
+            {
+                "1" : {
+                    "mission" : "サンプル",
+                    "mission_type" : "yearly",
+                    "terms" : "",
+                    "area" : {
+                        "1" : {
+                            "area_number" : "1-5",
+                            "achievement_conditions" : "A"
+                        },
+                        "2" : {
+                            "area_number" : "1-5",
+                            "achievement_conditions" : "A"
+                        },
+                        "3" : {
+                            "area_number" : "1-5",
+                            "achievement_conditions" : "A"
+                        }
+                    }
+                }
+            }
+        );
+
+        expect(pickUpAreaData(missionTestData,"3", "5-5")).toStrictEqual({});
+    });
 });

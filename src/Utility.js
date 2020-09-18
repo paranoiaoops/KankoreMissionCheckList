@@ -31,3 +31,34 @@ export function createDisplayData (missionData, progressData) {
     }
     return missionData;
 }
+
+export function pickUpAreaData (missionData, missionId, areaId) {
+    let returnObject = {};
+    for (let k in missionData) {
+        if (k === missionId) continue;
+
+        let areaKeys = checkAreaData(missionData[k]["area"], areaId);
+        if (!areaKeys.length) continue;
+
+        let areaData = {};
+        for (let i in areaKeys) {
+            areaData[areaKeys[i]] = missionData[k]["area"][areaKeys[i]];
+        }
+
+        returnObject[k] = {
+            "mission" : missionData[k]["mission"],
+            "mission_type" : missionData[k]["mission_type"],
+            "terms" : missionData[k]["terms"],
+            "area" : areaData
+        }
+    }
+    return returnObject;
+}
+
+export function checkAreaData (areaData, areaId) {
+    let returnArray = [];
+    for (let k in areaData) {
+        if (areaData[k]["area_number"] === areaId) returnArray.push(k);
+    }
+    return returnArray;
+}
