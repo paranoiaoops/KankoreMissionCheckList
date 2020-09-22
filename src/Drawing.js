@@ -104,6 +104,7 @@ function resetMissionList() {
                 ,item.dataset.area_id
                 ,pickUpAreaData(globalThis.missionData, item.parentElement.dataset.mission_id, item.dataset.area_number)
             );
+            document.getElementById("dialog-close").value = item.parentElement.dataset.mission_id;
 
             document.querySelectorAll("input").forEach((checkbox) => {
                 checkbox.addEventListener("change", () => {
@@ -113,13 +114,19 @@ function resetMissionList() {
             document.getElementById("dialog-Menu").showModal();
         });
     });
+    document.getElementById("")
+    document.getElementById("dialog-Menu").addEventListener("close", () => {
+        let modalMissionId = document.getElementById("dialog-Menu").returnValue;
+        resetMissionList();
+        document.querySelector(`details[data-mission_id="${modalMissionId}"]`).open = true;
+    });
 }
 
 function createListContents(displayData) {
     let view = "";
     for (let k in displayData) {
         view += `
-        <details>
+        <details data-mission_id="${k}">
             <summary>${displayData[k]["mission"]}</summary>
             <ul data-mission_id="${k}">
                 ${createAreaList(displayData[k]["area"], k)}
@@ -128,7 +135,7 @@ function createListContents(displayData) {
         <dialog id="dialog-Menu">
             <form method="dialog">
                 <div id="information"></div>
-                <button id="dialog-close">Close</button>
+                <button id="dialog-close" value="">Close</button>
             </form>
         </dialog>
         `;
