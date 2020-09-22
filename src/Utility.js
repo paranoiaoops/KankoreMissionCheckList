@@ -62,3 +62,7 @@ export function checkAreaData (areaData, areaId) {
     }
     return returnArray;
 }
+
+export function checkAreaClearFlag(displayData, missionId, areaId) {
+    return displayData[missionId]["progress"][areaId]["clear"];
+}

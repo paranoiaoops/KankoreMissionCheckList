@@ -1,5 +1,5 @@
 import {test, describe, expect} from "@jest/globals";
-import {createProgressData, createDisplayData, pickUpAreaData, checkAreaData}from "../src/Utility";
+import {createProgressData, createDisplayData, pickUpAreaData, checkAreaData, checkAreaClearFlag}from "../src/Utility";
 
 describe("任務用のJSONから進捗管理用のJSONする処理", () =>{
 
@@ -173,6 +173,7 @@ describe("任務用のJSONから進捗管理用のJSONする処理", () =>{
 
 
 describe("HTML描画用のデータ整形処理", () => {
+    // FIXME ソートされてないので調子する
    test("ソートされた状態ででてくる", () => {
        const missionData = {
            "1" : {
@@ -501,5 +502,100 @@ describe("同一海域情報を抽出する処理", () => {
         );
 
         expect(pickUpAreaData(missionTestData,"3", "5-5")).toStrictEqual({});
+    });
+});
+
+describe("表示用データからクリア状況を抽出する処理", () => {
+    test("テスト", () => {
+       const testDisplayData = {
+           "1" : {
+               "mission" : "サンプル",
+               "mission_type" : "yearly",
+               "terms" : "",
+               "area" : {
+                   "1" : {
+                       "area_number" : "1-5",
+                       "achievement_conditions" : "A"
+                   },
+                   "2" : {
+                       "area_number" : "1-5",
+                       "achievement_conditions" : "A"
+                   },
+                   "3" : {
+                       "area_number" : "1-5",
+                       "achievement_conditions" : "A"
+                   }
+               },
+               "progress" : {
+                   "1" : {
+                       "clear" : false,
+                       "url" : ""
+                   },
+                   "2" : {
+                       "clear" : false,
+                       "url" : ""
+                   },
+                   "3" : {
+                       "clear" : true,
+                       "url" : ""
+                   }
+               },
+               "display_flag" : false
+           },
+           "2" : {
+               "mission" : "サンプル2",
+               "mission_type" : "quarterly",
+               "terms" : "軽巡旗艦",
+               "area" : {
+                   "1" : {
+                       "area_number" : "1-5",
+                       "achievement_conditions" : "A"
+                   },
+                   "2" : {
+                       "area_number" : "2-5",
+                       "achievement_conditions" : "A"
+                   }
+               },
+               "progress" : {
+                   "1" : {
+                       "clear" : true,
+                       "url" : ""
+                   },
+                   "2" : {
+                       "clear" : false,
+                       "url" : ""
+                   }
+               },
+               "display_flag" : false
+           },
+           "3" : {
+               "mission" : "サンプル3",
+               "mission_type" : "monthly",
+               "terms" : "",
+               "area" : {
+                   "1" : {
+                       "area_number" : "5-4",
+                       "achievement_conditions" : "S"
+                   },
+                   "2" : {
+                       "area_number" : "5-5",
+                       "achievement_conditions" : "S"
+                   }
+               },
+               "progress" : {
+                   "1" : {
+                       "clear" : false,
+                       "url" : ""
+                   },
+                   "2" : {
+                       "clear" : false,
+                       "url" : ""
+                   }
+               },
+               "display_flag" : false
+           }
+       };
+       expect(checkAreaClearFlag(testDisplayData, "1", "3")).toBeTruthy();
+       expect(checkAreaClearFlag(testDisplayData, "1", "2")).toBeFalsy();
     });
 });
