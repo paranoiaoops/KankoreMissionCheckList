@@ -73,15 +73,16 @@ const debugMissionData = {
 
 // TODO indexDB のセットアップ
 import { openDb, getByKey, putData } from "./IndexDbUtility.js";
-import {createProgressData, createDisplayData, pickUpAreaData} from "./Utility.js";
+import {createProgressData, createDisplayData, pickUpAreaData, checkAreaClearFlag} from "./Utility.js";
 
 window.onload = () => {
     (async() => {
         await openDb().then((resolve) => {
             getByKey(resolve,"progressData", "1").then((indexDbProgressData) => {
                 globalThis.indexedDBrequests = resolve;
-                globalThis.progressData = createProgressData(debugMissionData, indexDbProgressData)
-                globalThis.displayData = createDisplayData(debugMissionData, progressData);
+                globalThis.progressData = createProgressData(debugMissionData, indexDbProgressData);
+                globalThis.progressData["id"] = "1";
+                globalThis.displayData = createDisplayData(debugMissionData, globalThis.progressData);
                 globalThis.missionData = debugMissionData;
                 putData(resolve, "progressData", globalThis.progressData);
                 resetMissionList();
@@ -99,9 +100,16 @@ function resetMissionList() {
             // dialog の内容を書き換える
             document.getElementById("information").innerHTML = createDialogContents(
                 globalThis.displayData[item.parentElement.dataset.mission_id]
+                ,item.parentElement.dataset.mission_id
                 ,item.dataset.area_id
                 ,pickUpAreaData(globalThis.missionData, item.parentElement.dataset.mission_id, item.dataset.area_number)
             );
+
+            document.querySelectorAll("input").forEach((checkbox) => {
+                checkbox.addEventListener("change", () => {
+                    dataSave(checkbox, checkbox.dataset.mission_id, checkbox.dataset.area_id);
+                });
+            });
             document.getElementById("dialog-Menu").showModal();
         });
     });
@@ -114,39 +122,44 @@ function createListContents(displayData) {
         <details>
             <summary>${displayData[k]["mission"]}</summary>
             <ul data-mission_id="${k}">
-                ${createAreaList(displayData[k]["area"])}
+                ${createAreaList(displayData[k]["area"], k)}
             </ul>
         </details>
         <dialog id="dialog-Menu">
             <form method="dialog">
                 <div id="information"></div>
                 <button id="dialog-close">Close</button>
-            </form>       
+            </form>
         </dialog>
         `;
     }
     return view;
 }
 
-function createAreaList (areaData) {
+function createAreaList (areaData, missionId) {
     let view = "";
     for (let k in areaData) {
         view += `
         <li data-area_id="${k}" data-area_number="${areaData[k]["area_number"]}">
+            ${checkAreaClearFlag(globalThis.displayData, missionId, k) ? "<s>" : ""}
             ${areaData[k]["area_number"]} / ${areaData[k]["achievement_conditions"]}
+            ${checkAreaClearFlag(globalThis.displayData, missionId, k) ? "</s>" : ""}                
         </li>
         `
     }
     return view;
 }
 
-// TODO モーダルウィンドウ機能の実装
-function createDialogContents(selectDisplayData, areaId, otherAreaData){
+function createDialogContents(selectDisplayData, missionId, areaId, otherAreaData){
     let view = "";
     view = `
     <div>${selectDisplayData.mission}</div>
     <div>${selectDisplayData.terms}</div>
-    <div>${selectDisplayData["area"][areaId]["area_number"]} / ${selectDisplayData["area"][areaId]["achievement_conditions"]} / チェックボックス</div>
+    <div>
+        <input type="checkbox" data-mission_id="${missionId}" data-area_id="${areaId}"
+            ${checkAreaClearFlag(globalThis.displayData, missionId, areaId) ? "checked=\"checked\"" : "" }>
+        ${selectDisplayData["area"][areaId]["area_number"]} / ${selectDisplayData["area"][areaId]["achievement_conditions"]}
+    </div>
     `;
     if (!Object.keys(otherAreaData).length) return view;
     for (let k in otherAreaData) {
@@ -158,6 +171,8 @@ function createDialogContents(selectDisplayData, areaId, otherAreaData){
         for (let areaKey in otherAreaData[k]["area"]) {
             view += `
             <div>
+                <input type="checkbox" data-mission_id="${k}" data-area_id="${areaKey}" 
+                    ${checkAreaClearFlag(globalThis.displayData, k, areaKey) ? "checked=\"checked\"" : ""}>
                 ${otherAreaData[k]["area"][areaKey]["area_number"]} 
                 / ${otherAreaData[k]["area"][areaKey]["achievement_conditions"]}
             </div>
@@ -166,3 +181,10 @@ function createDialogContents(selectDisplayData, areaId, otherAreaData){
     }
     return view;
 }
+
+function dataSave(obj, missionId, areaId) {
+    globalThis.progressData[missionId]["progress"][areaId]["clear"] = obj.checked;
+    globalThis.displayData = createDisplayData(globalThis.missionData, globalThis.displayData);
+    putData(globalThis.indexedDBrequests, "progressData", globalThis.progressData);
+}
+
