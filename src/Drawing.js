@@ -77,18 +77,26 @@ import {createProgressData, createDisplayData, pickUpAreaData, checkAreaClearFla
 
 window.onload = () => {
     (async() => {
+        await getMissionDataJson().then((json) => {
+            globalThis.missionData = json;
+        });
+        console.log(globalThis.missionData);
         await openDb().then((resolve) => {
             getByKey(resolve,"progressData", "1").then((indexDbProgressData) => {
                 globalThis.indexedDBrequests = resolve;
-                globalThis.progressData = createProgressData(debugMissionData, indexDbProgressData);
+                globalThis.progressData = createProgressData(globalThis.missionData, indexDbProgressData);
                 globalThis.progressData["id"] = "1";
-                globalThis.displayData = createDisplayData(debugMissionData, globalThis.progressData);
-                globalThis.missionData = debugMissionData;
+                globalThis.displayData = createDisplayData(globalThis.missionData, globalThis.progressData);
                 putData(resolve, "progressData", globalThis.progressData);
                 resetMissionList();
             });
         });
     })();
+}
+
+async function getMissionDataJson() {
+    const url = "http://localhost:63342/KankoreMissionCheckList/Data/MissionData.json";
+    return await (await fetch(url)).json();
 }
 
 
