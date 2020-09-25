@@ -173,7 +173,6 @@ describe("任務用のJSONから進捗管理用のJSONする処理", () =>{
 
 
 describe("HTML描画用のデータ整形処理", () => {
-    // FIXME ソートされてないので調子する
    test("ソートされた状態ででてくる", () => {
        const missionData = {
            "1" : {
@@ -273,22 +272,18 @@ describe("HTML描画用のデータ整形処理", () => {
        };
 
        const toBeObject = {
-           "1" : {
-               "mission" : "サンプル",
-               "mission_type" : "yearly",
+           "3" : {
+               "mission" : "サンプル3",
+               "mission_type" : "monthly",
                "terms" : "",
                "area" : {
                    "1" : {
-                       "area_number" : "1-5",
-                       "achievement_conditions" : "A"
+                       "area_number" : "5-4",
+                       "achievement_conditions" : "S"
                    },
                    "2" : {
-                       "area_number" : "1-5",
-                       "achievement_conditions" : "A"
-                   },
-                   "3" : {
-                       "area_number" : "1-5",
-                       "achievement_conditions" : "A"
+                       "area_number" : "5-5",
+                       "achievement_conditions" : "S"
                    }
                },
                "progress" : {
@@ -297,10 +292,6 @@ describe("HTML描画用のデータ整形処理", () => {
                        "url" : ""
                    },
                    "2" : {
-                       "clear" : false,
-                       "url" : ""
-                   },
-                   "3" : {
                        "clear" : false,
                        "url" : ""
                    }
@@ -333,18 +324,22 @@ describe("HTML描画用のデータ整形処理", () => {
                },
                "display_flag" : false
            },
-           "3" : {
-               "mission" : "サンプル3",
-               "mission_type" : "monthly",
+           "1" : {
+               "mission" : "サンプル",
+               "mission_type" : "yearly",
                "terms" : "",
                "area" : {
                    "1" : {
-                       "area_number" : "5-4",
-                       "achievement_conditions" : "S"
+                       "area_number" : "1-5",
+                       "achievement_conditions" : "A"
                    },
                    "2" : {
-                       "area_number" : "5-5",
-                       "achievement_conditions" : "S"
+                       "area_number" : "1-5",
+                       "achievement_conditions" : "A"
+                   },
+                   "3" : {
+                       "area_number" : "1-5",
+                       "achievement_conditions" : "A"
                    }
                },
                "progress" : {
@@ -353,6 +348,10 @@ describe("HTML描画用のデータ整形処理", () => {
                        "url" : ""
                    },
                    "2" : {
+                       "clear" : false,
+                       "url" : ""
+                   },
+                   "3" : {
                        "clear" : false,
                        "url" : ""
                    }

@@ -29,7 +29,24 @@ export function createDisplayData (missionData, progressData) {
         missionData[k]["progress"] = progressData[k]["progress"];
         missionData[k]["display_flag"] = progressData[k]["display_flag"];
     }
-    return missionData;
+    // ソート (マンスリー, クオータリィー, イヤーリィー)
+    let monthly = {}, quarterly ={}, yearly ={};
+    for (let k2 in missionData) {
+        switch (missionData[k2]["mission_type"]) {
+            case "monthly":
+                monthly[k2] = missionData[k2];
+                break;
+            case "quarterly":
+                quarterly[k2] = missionData[k2];
+                break;
+            case "yearly":
+                yearly[k2] = missionData[k2];
+                break;
+        }
+
+    }
+    console.log({...yearly, ...quarterly, ...monthly});
+    return {...yearly, ...quarterly, ...monthly};
 }
 
 export function pickUpAreaData (missionData, missionId, areaId) {
