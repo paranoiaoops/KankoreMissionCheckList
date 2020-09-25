@@ -127,7 +127,7 @@ function createListContents(displayData) {
     for (let k in displayData) {
         view += `
         <details data-mission_id="${k}">
-            <summary>${displayData[k]["mission"]}</summary>
+            <summary>${missionTypeText(displayData[k]["mission_type"])} ${displayData[k]["mission"]}</summary>
             <ul data-mission_id="${k}">
                 ${createAreaList(displayData[k]["area"], k)}
             </ul>
@@ -141,6 +141,22 @@ function createListContents(displayData) {
         `;
     }
     return view;
+}
+
+function missionTypeText(type) {
+    let text = "";
+    switch (type) {
+        case "monthly":
+            text = "(月)";
+            break;
+        case "quarterly":
+            text = "(他)";
+            break;
+        case "yearly":
+            text = "(年)";
+            break;
+    }
+    return text;
 }
 
 function createAreaList (areaData, missionId) {
@@ -160,8 +176,8 @@ function createAreaList (areaData, missionId) {
 function createDialogContents(selectDisplayData, missionId, areaId, otherAreaData){
     let view = "";
     view = `
-    <div>${selectDisplayData.mission}</div>
-    <div>${selectDisplayData.terms}</div>
+    <div>${missionTypeText(selectDisplayData.mission_type)} ${selectDisplayData.mission}</div>
+    <div style="color: red">${selectDisplayData.terms}</div>
     <div>
         <input type="checkbox" data-mission_id="${missionId}" data-area_id="${areaId}"
             ${checkAreaClearFlag(globalThis.displayData, missionId, areaId) ? "checked=\"checked\"" : "" }>
@@ -171,9 +187,9 @@ function createDialogContents(selectDisplayData, missionId, areaId, otherAreaDat
     if (!Object.keys(otherAreaData).length) return view;
     for (let k in otherAreaData) {
         view += `
-        <div>-------</div>
-        <div>${otherAreaData[k].mission}</div>
-        <div>${otherAreaData[k].terms}</div>
+        <hr></hr>
+        <div>${missionTypeText(selectDisplayData.mission_type)} ${otherAreaData[k].mission}</div>
+        <div style="color: red">${otherAreaData[k].terms}</div>
         `;
         for (let areaKey in otherAreaData[k]["area"]) {
             view += `
