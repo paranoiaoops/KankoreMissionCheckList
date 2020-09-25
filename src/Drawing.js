@@ -196,7 +196,7 @@ function createDialogContents(selectDisplayData, missionId, areaId, otherAreaDat
     for (let k in otherAreaData) {
         view += `
         <hr></hr>
-        <div>${missionTypeText(selectDisplayData.mission_type)} ${otherAreaData[k].mission}</div>
+        <div>${missionTypeText(otherAreaData[k].mission_type)} ${otherAreaData[k].mission}</div>
         <div style="color: red">${otherAreaData[k].terms}</div>
         `;
         for (let areaKey in otherAreaData[k]["area"]) {
