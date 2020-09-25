@@ -45,7 +45,6 @@ export function createDisplayData (missionData, progressData) {
         }
 
     }
-    console.log({...yearly, ...quarterly, ...monthly});
     return {...yearly, ...quarterly, ...monthly};
 }
 
