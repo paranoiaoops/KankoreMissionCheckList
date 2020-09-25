@@ -1,0 +1,545 @@
+{
+  "1" : {
+    "mission" : "「第五戦隊」出撃せよ！",
+    "mission_type" : "monthly",
+    "terms" : "第五戦隊」(「妙高」+「那智」+「羽黒」)3隻+自由枠3隻",
+    "area" : {
+      "1" : {
+        "area_number" : "2-5",
+        "achievement_conditions" : "S"
+      }
+    }
+  },
+  "2" : {
+    "mission": "「潜水艦隊」出撃せよ！",
+    "mission_type": "monthly",
+    "terms": "",
+    "area": {
+      "1" : {
+        "area_number": "6-1",
+        "achievement_conditions": "S"
+      },
+      "2" : {
+        "area_number": "6-1",
+        "achievement_conditions": "S"
+      },
+      "3" : {
+        "area_number": "6-1",
+        "achievement_conditions": "S"
+      }
+    }
+  },
+  "3" : {
+    "mission" : "「水雷戦隊」南西へ！",
+    "mission_type": "monthly",
+    "terms" : "旗艦軽巡+軽巡0～2隻＋駆逐3～5隻からなる(軽巡/駆逐)のみの編成",
+    "area" : {
+      "1" : {
+        "area_number" : "1-4",
+        "achievement_conditions" : "S"
+      }
+    }
+  },
+  "4" : {
+    "mission" : "「水上打撃部隊」南方へ！",
+    "mission_type" : "monthly",
+    "terms" : "(「大和型」/「長門型」/「伊勢型」/「扶桑型」より)3隻+軽巡1隻+自由枠2隻",
+    "area" : {
+      "1" : {
+        "area_number" : "5-1",
+        "achievement_conditions" : "S"
+      }
+    }
+  },
+  "5" : {
+    "mission" : "海上護衛強化月間",
+    "mission_type" : "monthly",
+    "terms" : "",
+    "area" : {
+      "1" : {
+        "area_number" : "1-5",
+        "achievement_conditions" : "A"
+      },
+      "2" : {
+        "area_number" : "1-5",
+        "achievement_conditions" : "A"
+      },
+      "3" : {
+        "area_number" : "1-5",
+        "achievement_conditions" : "A"
+      },
+      "4" : {
+        "area_number" : "1-5",
+        "achievement_conditions" : "A"
+      },
+      "5" : {
+        "area_number" : "1-5",
+        "achievement_conditions" : "A"
+      },
+      "6" : {
+        "area_number" : "1-5",
+        "achievement_conditions" : "A"
+      },
+      "7" : {
+        "area_number" : "1-5",
+        "achievement_conditions" : "A"
+      },
+      "8" : {
+        "area_number" : "1-5",
+        "achievement_conditions" : "A"
+      },
+      "9" : {
+        "area_number" : "1-5",
+        "achievement_conditions" : "A"
+      },
+      "10" : {
+        "area_number" : "1-5",
+        "achievement_conditions" : "A"
+      }
+    }
+  },
+  "6" : {
+    "mission" : "「空母機動部隊」西へ！",
+    "mission_type" : "monthly",
+    "terms" : "航空母艦2隻+駆逐2隻+自由枠2隻",
+    "area" : {
+      "1" : {
+        "area_number" : "4-2",
+        "achievement_conditions" : "S"
+      }
+    }
+  },
+  "7" : {
+    "mission" : "「水上反撃部隊」突入せよ！",
+    "mission_type" : "monthly",
+    "terms" : "旗艦「駆逐艦」+重巡1隻+軽巡1隻+駆逐3隻",
+    "area" : {
+      "1" : {
+        "area_number" : "2-5",
+        "achievement_conditions" : "S"
+      }
+    }
+  },
+  "8" : {
+    "mission" : "兵站線確保！海上警備を強化実施せよ！",
+    "mission_type" : "monthly",
+    "terms" : "(軽空母/軽巡級)1隻+(駆逐/海防)3隻+自由枠2隻",
+    "area" : {
+      "1" : {
+        "area_number" : "1-2",
+        "achievement_conditions" : "S"
+      },
+      "2" : {
+        "area_number" : "1-3",
+        "achievement_conditions" : "S"
+      },
+      "3" : {
+        "area_number" : "1-4",
+        "achievement_conditions" : "S"
+      },
+      "4" : {
+        "area_number" : "2-1",
+        "achievement_conditions" : "S"
+      }
+    }
+  },
+  "9" : {
+    "mission" : "沖ノ島海域迎撃戦",
+    "mission_type" : "quarterly",
+    "terms" : "",
+    "area" : {
+      "1" : {
+        "area_number" : "2-4",
+        "achievement_conditions" : "S"
+      },
+      "2" : {
+        "area_number" : "2-4",
+        "achievement_conditions" : "S"
+      }
+    }
+  },
+  "10" : {
+    "mission" : "戦果拡張任務！「Z作戦」前段作戦",
+    "mission_type" : "quarterly",
+    "terms" : "",
+    "area" : {
+      "1" : {
+        "area_number" : "2-4",
+        "achievement_conditions" : "A"
+      },
+      "2" : {
+        "area_number" : "6-1",
+        "achievement_conditions" : "A"
+      },
+      "3" : {
+        "area_number" : "6-3",
+        "achievement_conditions" : "A"
+      },
+      "4" : {
+        "area_number" : "6-4",
+        "achievement_conditions" : "S"
+      }
+    }
+  },
+  "11" : {
+    "mission" : "強行輸送艦隊、抜錨！",
+    "mission_type" : "quarterly",
+    "terms" : "(航戦/補給艦)2隻+自由枠4隻",
+    "area" : {
+      "1" : {
+        "area_number" : "1-6",
+        "achievement_conditions" : "ゴール"
+      },
+      "2" : {
+        "area_number" : "1-6",
+        "achievement_conditions" : "ゴール"
+      }
+    }
+  },
+  "12" : {
+    "mission" : "前線の航空偵察を実施せよ！",
+    "mission_type" : "quarterly",
+    "terms" : "水母1隻+軽巡2隻+自由枠3隻",
+    "area" : {
+      "1" : {
+        "area_number" : "6-3",
+        "achievement_conditions" : "A"
+      },
+      "2" : {
+        "area_number" : "6-3",
+        "achievement_conditions" : "A"
+      }
+    }
+  },
+  "13" : {
+    "mission" : "北方海域警備を実施せよ！",
+    "mission_type" : "quarterly",
+    "terms" : "軽巡1隻+自由枠5隻",
+    "area" : {
+      "1" : {
+        "area_number" : "3-1",
+        "achievement_conditions" : "A"
+      },
+      "2" : {
+        "area_number" : "3-2",
+        "achievement_conditions" : "A"
+      },
+      "3" : {
+        "area_number" : "3-3",
+        "achievement_conditions" : "A"
+      }
+    }
+  },
+  "14" : {
+    "mission" : "精鋭「三一駆」、鉄底海域に突入せよ！",
+    "mission_type" : "quarterly",
+    "terms" : "「長波改二」+(「高波改」/「沖波改」/「朝霜改」より)1隻+自由枠4隻",
+    "area" : {
+      "1" : {
+        "area_number" : "5-4",
+        "achievement_conditions" : "S"
+      },
+      "2" : {
+        "area_number" : "5-4",
+        "achievement_conditions" : "S"
+      }
+    }
+  },
+  "15" : {
+    "mission" : "新編成「三川艦隊」、鉄底海峡に突入せよ！",
+    "mission_type" : "quarterly",
+    "terms" : "(「鳥海」/「青葉」/「衣笠」/「加古」/「古鷹」/「天龍」/「夕張」より)4隻+自由枠2隻",
+    "area" : {
+      "1" : {
+        "area_number" : "5-1",
+        "achievement_conditions" : "S"
+      },
+      "2" : {
+        "area_number" : "5-3",
+        "achievement_conditions" : "S"
+      },
+      "3" : {
+        "area_number" : "5-4",
+        "achievement_conditions" : "S"
+      }
+    }
+  },
+  "16" : {
+    "mission" : "泊地周辺海域の安全確保を徹底せよ！",
+    "mission_type" : "quarterly",
+    "terms" : "",
+    "area" : {
+      "1" : {
+        "area_number" : "1-5",
+        "achievement_conditions" : "S"
+      },
+      "2" : {
+        "area_number" : "1-5",
+        "achievement_conditions" : "S"
+      },
+      "3" : {
+        "area_number" : "1-5",
+        "achievement_conditions" : "S"
+      },
+      "4" : {
+        "area_number" : "7-1",
+        "achievement_conditions" : "S"
+      },
+      "5" : {
+        "area_number" : "7-1",
+        "achievement_conditions" : "S"
+      },
+      "6" : {
+        "area_number" : "7-1",
+        "achievement_conditions" : "S"
+      },
+      "7" : {
+        "area_number" : "7-2-1",
+        "achievement_conditions" : "S"
+      },
+      "8" : {
+        "area_number" : "7-2-1",
+        "achievement_conditions" : "S"
+      },
+      "9" : {
+        "area_number" : "7-2-1",
+        "achievement_conditions" : "S"
+      },
+      "10" : {
+        "area_number" : "7-2-2",
+        "achievement_conditions" : "S"
+      },
+      "11" : {
+        "area_number" : "7-2-2",
+        "achievement_conditions" : "S"
+      },
+      "12" : {
+        "area_number" : "7-2-2",
+        "achievement_conditions" : "S"
+      }
+    }
+  },
+  "17" : {
+    "mission" : "空母戦力の投入による兵站線戦闘哨戒",
+    "mission_type" : "quarterly",
+    "terms" : "航空母艦1隻+自由枠5隻",
+    "area" : {
+      "1" : {
+        "area_number" : "1-3",
+        "achievement_conditions" : "S"
+      },
+      "2" : {
+        "area_number" : "1-4",
+        "achievement_conditions" : "S"
+      },
+      "3" : {
+        "area_number" : "2-1",
+        "achievement_conditions" : "S"
+      },
+      "4" : {
+        "area_number" : "2-2",
+        "achievement_conditions" : "S"
+      },
+      "5" : {
+        "area_number" : "2-3",
+        "achievement_conditions" : "S"
+      }
+    }
+  },
+  "18" : {
+    "mission" : "戦果拡張任務！「Z作戦」後段作戦",
+    "mission_type" : "quarterly",
+    "terms" : "",
+    "area" : {
+      "1" : {
+        "area_number" : "7-2-2",
+        "achievement_conditions" : "S"
+      },
+      "2" : {
+        "area_number" : "5-5",
+        "achievement_conditions" : "S"
+      },
+      "3" : {
+        "area_number" : "6-2",
+        "achievement_conditions" : "S"
+      },
+      "4" : {
+        "area_number" : "6-5",
+        "achievement_conditions" : "S"
+      }
+    }
+  },
+  "19" : {
+    "mission" : "南西諸島方面「海上警備行動」発令！",
+    "mission_type" : "quarterly",
+    "terms" : "(軽空母/軽巡級)1隻+(駆逐/海防艦)3隻+自由枠2隻",
+    "area" : {
+      "1" : {
+        "area_number" : "1-4",
+        "achievement_conditions" : "S"
+      },
+      "2" : {
+        "area_number" : "2-1",
+        "achievement_conditions" : "S"
+      },
+      "3" : {
+        "area_number" : "2-2",
+        "achievement_conditions" : "S"
+      },
+      "4" : {
+        "area_number" : "2-3",
+        "achievement_conditions" : "S"
+      }
+    }
+  },
+  "20" : {
+    "mission" : "発令！「西方海域作戦」",
+    "mission_type" : "quarterly",
+    "terms" : "",
+    "area" : {
+      "1" : {
+        "area_number" : "4-1",
+        "achievement_conditions" : "S"
+      },
+      "2" : {
+        "area_number" : "4-2",
+        "achievement_conditions" : "S"
+      },
+      "3" : {
+        "area_number" : "4-3",
+        "achievement_conditions" : "S"
+      },
+      "4" : {
+        "area_number" : "4-4",
+        "achievement_conditions" : "S"
+      },
+      "5" : {
+        "area_number" : "4-5",
+        "achievement_conditions" : "S"
+      }
+    }
+  },
+  "21" : {
+    "mission" : "拡張「六水戦」、最前線へ！",
+    "mission_type" : "quarterly",
+    "terms" : "旗艦「夕張改二/改二特/改二丁」+随伴艦(「睦月」「如月」/「弥生」/「卯月」/「菊月」/「望月」より)2隻+自由枠3隻 または 随伴艦「由良改二」+自由枠4隻",
+    "area" : {
+      "1" : {
+        "area_number" : "5-1",
+        "achievement_conditions" : "S"
+      },
+      "2" : {
+        "area_number" : "5-4",
+        "achievement_conditions" : "S"
+      },
+      "3" : {
+        "area_number" : "6-4",
+        "achievement_conditions" : "S"
+      },
+      "4" : {
+        "area_number" : "6-5",
+        "achievement_conditions" : "S"
+      }
+    }
+  },
+  "22" : {
+    "mission" : "(2月) 精鋭「十九駆」、躍り出る！",
+    "mission_type" : "yearly",
+    "terms" : "綾波改二」+「敷波改二」+自由枠4隻",
+    "area" : {
+      "1" : {
+        "area_number" : "2-5",
+        "achievement_conditions" : "S"
+      },
+      "2" : {
+        "area_number" : "3-4",
+        "achievement_conditions" : "S"
+      },
+      "3" : {
+        "area_number" : "4-5",
+        "achievement_conditions" : "S"
+      },
+      "4" : {
+        "area_number" : "5-3",
+        "achievement_conditions" : "S"
+      }
+    }
+  },
+  "23" : {
+    "mission" : "(2月) 「海防艦」、海を護る！",
+    "mission_type" : "yearly",
+    "terms" : "海防艦3隻+自由枠2隻の5隻以下の編成",
+    "area" : {
+      "1" : {
+        "area_number" : "1-1",
+        "achievement_conditions" : "A"
+      },
+      "2" : {
+        "area_number" : "1-2",
+        "achievement_conditions" : "A"
+      },
+      "3" : {
+        "area_number" : "1-3",
+        "achievement_conditions" : "A"
+      },
+      "4" : {
+        "area_number" : "1-4",
+        "achievement_conditions" : "A"
+      },
+      "5" : {
+        "area_number" : "1-6",
+        "achievement_conditions" : "ゴール"
+      }
+    }
+  },
+  "24" : {
+    "mission" : "(3月) 工作艦「明石」護衛任務",
+    "mission_type" : "yearly",
+    "terms" : "旗艦「明石」+駆逐艦3隻+自由枠2隻",
+    "area" : {
+      "1" : {
+        "area_number" : "1-3",
+        "achievement_conditions" : "A"
+      },
+      "2" : {
+        "area_number" : "2-1",
+        "achievement_conditions" : "A"
+      },
+      "3" : {
+        "area_number" : "2-2",
+        "achievement_conditions" : "A"
+      },
+      "4" : {
+        "area_number" : "2-3",
+        "achievement_conditions" : "A"
+      },
+      "5" : {
+        "area_number" : "1-6",
+        "achievement_conditions" : "ゴール"
+      }
+    }
+  },
+  "25" : {
+    "mission" : "(3月) 重巡戦隊、西へ！",
+    "mission_type" : "yearly",
+    "terms" : "重巡(航巡不可)3隻+駆逐艦1隻+自由枠2隻",
+    "area" : {
+      "1" : {
+        "area_number" : "4-1",
+        "achievement_conditions" : "A"
+      },
+      "2" : {
+        "area_number" : "4-2",
+        "achievement_conditions" : "A"
+      },
+      "3" : {
+        "area_number" : "4-3",
+        "achievement_conditions" : "A"
+      },
+      "4" : {
+        "area_number" : "4-4",
+        "achievement_conditions" : "A"
+      }
+    }
+  }
+}
