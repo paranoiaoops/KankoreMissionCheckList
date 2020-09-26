@@ -1,6 +1,10 @@
 import {putData } from "./IndexDbUtility.js";
 import {createDisplayData, pickUpAreaData, checkAreaClearFlag, checkAreaData} from "./Utility.js";
 
+/**
+ * indexページ用の画面生成処理
+ * Domの生成・イベントの設定等行う
+ */
 export function resetMissionList() {
     document.getElementById("app").innerHTML = "loading...";
     document.getElementById("app").innerHTML = createListContents(globalThis.displayData);
@@ -30,6 +34,11 @@ export function resetMissionList() {
     });
 }
 
+/**
+ * index ページにおける任務の一覧 dom を作成する処理
+ * @param {object} displayData
+ * @return {string}
+ */
 function createListContents(displayData) {
     let view = "";
     for (let k in displayData) {
@@ -51,6 +60,11 @@ function createListContents(displayData) {
     return view;
 }
 
+/**
+ * 任務のタイプ情報からテキストを生成する処理
+ * @param {string} type
+ * @return {string}
+ */
 function missionTypeText(type) {
     let text = "";
     switch (type) {
@@ -67,6 +81,12 @@ function missionTypeText(type) {
     return text;
 }
 
+/**
+ * 任務の対象となる海域の一覧 dom を返す処理
+ * @param {object} areaData
+ * @param {string} missionId
+ * @return {string}
+ */
 function createAreaList (areaData, missionId) {
     let view = "";
     for (let k in areaData) {
@@ -81,6 +101,14 @@ function createAreaList (areaData, missionId) {
     return view;
 }
 
+/**
+ * dialog タグをの内容を生成するための処理
+ * @param {object} selectDisplayData
+ * @param {string} missionId
+ * @param {string} areaId
+ * @param {object} otherAreaData
+ * @return {string}
+ */
 function createDialogContents(selectDisplayData, missionId, areaId, otherAreaData){
     let view = "";
     view = `
@@ -113,6 +141,12 @@ function createDialogContents(selectDisplayData, missionId, areaId, otherAreaDat
     return view;
 }
 
+/**
+ * indexDB に進行状況のデータを保存&グローバル変数の進行状況を書き換える処理
+ * @param {object} obj
+ * @param {string} missionId
+ * @param {string} areaId
+ */
 function dataSave(obj, missionId, areaId) {
     globalThis.progressData[missionId]["progress"][areaId]["clear"] = obj.checked;
     globalThis.displayData = createDisplayData(globalThis.missionData, globalThis.displayData);
@@ -134,6 +168,11 @@ export function setUpReverse() {
     });
 }
 
+/**
+ * 逆引きページにおける dialog dom を作成する処理
+ * @param {object} missionData
+ * @return {string}
+ */
 function createReverseDialog(missionData) {
     if (!Object.keys(missionData).length) return "<div>対応する任務がありません</div>";
 

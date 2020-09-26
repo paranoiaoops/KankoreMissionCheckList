@@ -1,4 +1,10 @@
-
+/**
+ * 任務データと現行の進行データを渡して足りないデータを作成する処理
+ * 将来的に任務が追加されるときに進行データを作成するための処理
+ * @param {object} missionData
+ * @param {object} progressData
+ * @return {object}
+ */
 export function createProgressData (missionData, progressData) {
     for (let k in missionData) {
         if (!(k in progressData)) {
@@ -20,9 +26,9 @@ export function createProgressData (missionData, progressData) {
 
 /**
  * HTMLの表示のためにデータ整形する処理
- * @param missionData
- * @param progressData
- * @return object
+ * @param {object} missionData
+ * @param {object} progressData
+ * @return {object}
  */
 export function createDisplayData (missionData, progressData) {
     for (let k in missionData) {
@@ -48,6 +54,13 @@ export function createDisplayData (missionData, progressData) {
     return {...yearly, ...quarterly, ...monthly};
 }
 
+/**
+ * 任務データから missionId を除いた areaId の海域情報を抽出する処理
+ * @param {object} missionData
+ * @param {string} missionId 選択しているミッションID
+ * @param {string} areaId 海域番号
+ * @return {object}
+ */
 export function pickUpAreaData (missionData, missionId, areaId) {
     let returnObject = {};
     for (let k in missionData) {
@@ -71,6 +84,12 @@ export function pickUpAreaData (missionData, missionId, areaId) {
     return returnObject;
 }
 
+/**
+ * 任務の対象となる海域のオブジェクトから、areaIdが一致する海域のidをリストアップする処理
+ * @param {object} areaData
+ * @param {string} areaId
+ * @return {array}
+ */
 export function checkAreaData (areaData, areaId) {
     let returnArray = [];
     for (let k in areaData) {
@@ -79,6 +98,13 @@ export function checkAreaData (areaData, areaId) {
     return returnArray;
 }
 
+/**
+ * クリアかどうかをチェックするための関数
+ * @param {object} displayData
+ * @param {string} missionId
+ * @param {string} areaId
+ * @return {boolean}
+ */
 export function checkAreaClearFlag(displayData, missionId, areaId) {
     return displayData[missionId]["progress"][areaId]["clear"];
 }

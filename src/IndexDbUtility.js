@@ -1,3 +1,7 @@
+/**
+ * IndexDbを開くための処理
+ * @return {Promise<unknown>}
+ */
 export async function openDb() {
 
     const DB_NAME = "KankoreMissionCheckList";
@@ -28,6 +32,13 @@ export async function openDb() {
     })
 }
 
+/**
+ * 指定したデータを取得する処理
+ * @param {indexedDB} db
+ * @param {string} storeName
+ * @param {any} key
+ * @return {Promise<unknown>}
+ */
 export async function getByKey (db, storeName, key) {
     return new Promise((resolve, reject) => {
         const tr = db.transaction([storeName]);
@@ -38,6 +49,13 @@ export async function getByKey (db, storeName, key) {
     });
 }
 
+/**
+ * indexDBにデータを保存する処理
+ * @param {indexedDB} db
+ * @param {string} storeName
+ * @param {any} value
+ * @return {Promise<unknown>}
+ */
 export async function putData(db, storeName, value) {
     return new Promise((resolve, reject) => {
         const tr = db.transaction([storeName], "readwrite");
