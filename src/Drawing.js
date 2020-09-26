@@ -1,5 +1,5 @@
 import {putData } from "./IndexDbUtility.js";
-import {createDisplayData, pickUpAreaData, checkAreaClearFlag} from "./Utility.js";
+import {createDisplayData, pickUpAreaData, checkAreaClearFlag, checkAreaData} from "./Utility.js";
 
 export function resetMissionList() {
     document.getElementById("app").innerHTML = "loading...";
@@ -117,4 +117,44 @@ function dataSave(obj, missionId, areaId) {
     globalThis.progressData[missionId]["progress"][areaId]["clear"] = obj.checked;
     globalThis.displayData = createDisplayData(globalThis.missionData, globalThis.displayData);
     putData(globalThis.indexedDBrequests, "progressData", globalThis.progressData);
+}
+
+export function setUpReverse() {
+    document.getElementById("open-Dialog").addEventListener("click", ()=> {
+        // 対応するオブジェクトをリストアップ 存在しないキーを指定し対応するデータ全部を引っこ抜く
+        let targetObject = pickUpAreaData(globalThis.missionData, "0", document.getElementById("area_number").value);
+        document.getElementById("information").innerHTML = createReverseDialog(targetObject);
+
+        document.querySelectorAll("input").forEach((checkbox) => {
+            checkbox.addEventListener("change", () => {
+                dataSave(checkbox, checkbox.dataset.mission_id, checkbox.dataset.area_id);
+            });
+        });
+        document.getElementById("dialog-Menu").showModal();
+    });
+}
+
+function createReverseDialog(missionData) {
+    if (!Object.keys(missionData).length) return "<div>対応する任務がありません</div>";
+
+    let view = "", firstFlag = true;
+    for (let k in missionData) {
+        view += `
+        ${firstFlag ? "" : "<hr>"}
+        <div>${missionTypeText(missionData[k].mission_type)} ${missionData[k].mission}</div>
+        <div style="color: red">${missionData[k].terms}</div>
+        `;
+        for (let areaKey in missionData[k]["area"]) {
+            view += `
+            <div>
+                <input type="checkbox" data-mission_id="${k}" data-area_id="${areaKey}" 
+                    ${checkAreaClearFlag(globalThis.displayData, k, areaKey) ? "checked=\"checked\"" : ""}>
+                ${missionData[k]["area"][areaKey]["area_number"]} 
+                / ${missionData[k]["area"][areaKey]["achievement_conditions"]}
+            </div>
+            `;
+        }
+        firstFlag = false;
+    }
+    return view;
 }
