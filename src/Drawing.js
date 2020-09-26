@@ -1,32 +1,7 @@
-import { openDb, getByKey, putData } from "./IndexDbUtility.js";
-import {createProgressData, createDisplayData, pickUpAreaData, checkAreaClearFlag} from "./Utility.js";
+import {putData } from "./IndexDbUtility.js";
+import {createDisplayData, pickUpAreaData, checkAreaClearFlag} from "./Utility.js";
 
-window.onload = () => {
-    (async() => {
-        await getMissionDataJson().then((json) => {
-            globalThis.missionData = json;
-        });
-        console.log(globalThis.missionData);
-        await openDb().then((resolve) => {
-            getByKey(resolve,"progressData", "1").then((indexDbProgressData) => {
-                globalThis.indexedDBrequests = resolve;
-                globalThis.progressData = createProgressData(globalThis.missionData, indexDbProgressData);
-                globalThis.progressData["id"] = "1";
-                globalThis.displayData = createDisplayData(globalThis.missionData, globalThis.progressData);
-                putData(resolve, "progressData", globalThis.progressData);
-                resetMissionList();
-            });
-        });
-    })();
-}
-
-async function getMissionDataJson() {
-    const url = "http://localhost:63342/KankoreMissionCheckList/Data/MissionData.json";
-    return await (await fetch(url)).json();
-}
-
-
-function resetMissionList() {
+export function resetMissionList() {
     document.getElementById("app").innerHTML = "loading...";
     document.getElementById("app").innerHTML = createListContents(globalThis.displayData);
     document.querySelectorAll("li").forEach((item) => {
@@ -143,4 +118,3 @@ function dataSave(obj, missionId, areaId) {
     globalThis.displayData = createDisplayData(globalThis.missionData, globalThis.displayData);
     putData(globalThis.indexedDBrequests, "progressData", globalThis.progressData);
 }
-

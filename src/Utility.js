@@ -82,3 +82,13 @@ export function checkAreaData (areaData, areaId) {
 export function checkAreaClearFlag(displayData, missionId, areaId) {
     return displayData[missionId]["progress"][areaId]["clear"];
 }
+
+/**
+ * 任務データを取得する処理
+ * FIXME url の差し替え
+ * @return {Promise<any>}
+ */
+export async function getMissionDataJson() {
+    const url = "http://localhost:63342/KankoreMissionCheckList/Data/MissionData.json";
+    return await (await fetch(url)).json();
+}
