@@ -111,10 +111,9 @@ export function checkAreaClearFlag(displayData, missionId, areaId) {
 
 /**
  * 任務データを取得する処理
- * FIXME url の差し替え
  * @return {Promise<any>}
  */
 export async function getMissionDataJson() {
-    const url = "http://localhost:63342/KankoreMissionCheckList/Data/MissionData.json";
+    const url = "https://paranoiaoops.github.io/KankoreMissionCheckList/Data/MissionData.json";
     return await (await fetch(url)).json();
 }
