@@ -132,3 +132,19 @@ export function getMissionIdByMissionType(missionData, targetMissionType) {
     }
     return val;
 }
+
+/**
+ * 指定した id の進行状況をリセットする処理
+ * @param {object} progressData
+ * @param {array} resetIds
+ * @return {object}
+ */
+export function resetProgressData(progressData, resetIds) {
+    if (!resetIds.length) return progressData;
+    for (let k in resetIds) {
+        for (let progressKey in progressData[resetIds[k]]["progress"]) {
+            progressData[resetIds[k]]["progress"][progressKey]["clear"] = false
+        }
+    }
+    return progressData;
+}

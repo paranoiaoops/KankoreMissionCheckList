@@ -1,5 +1,6 @@
 import {test, describe, expect} from "@jest/globals";
-import {createProgressData, createDisplayData, pickUpAreaData, checkAreaData, checkAreaClearFlag, getMissionIdByMissionType}from "../src/Utility";
+import {createProgressData, createDisplayData, pickUpAreaData, checkAreaData,
+    checkAreaClearFlag, getMissionIdByMissionType, resetProgressData}from "../src/Utility";
 
 describe("任務用のJSONから進捗管理用のJSONする処理", () =>{
 
@@ -698,4 +699,163 @@ describe("特定のミッションタイプのデータを抽出する処理", (
     test("対象がないとき",　() => {
         expect(getMissionIdByMissionType(testMissionData, [])).toStrictEqual([]);
     })
+});
+
+describe("指定したIDのデータをリセットする処理", () => {
+    const testProgressData = {
+        "1" : {
+            "progress" : {
+                "1" : {
+                    "clear" : true,
+                    "url" : ""
+                },
+                "2" : {
+                    "clear" : false,
+                    "url" : ""
+                },
+                "3" : {
+                    "clear" : true,
+                    "url" : ""
+                }
+            },
+            "display_flag" : false
+        },
+        "2" : {
+            "progress" : {
+                "1" : {
+                    "clear" : true,
+                    "url" : ""
+                },
+                "2" : {
+                    "clear" : true,
+                    "url" : ""
+                },
+            },
+            "display_flag" : false
+        },
+        "3" : {
+            "progress" : {
+                "1" : {
+                    "clear" : false,
+                    "url" : ""
+                },
+                "2" : {
+                    "clear" : false,
+                    "url" : ""
+                },
+                "3" : {
+                    "clear" : true,
+                    "url" : ""
+                }
+            },
+            "display_flag" : false
+        }
+    };
+    test("正常系", () => {
+        expect(resetProgressData(testProgressData, ["1"])).toStrictEqual({
+            "1" : {
+                "progress" : {
+                    "1" : {
+                        "clear" : false,
+                        "url" : ""
+                    },
+                    "2" : {
+                        "clear" : false,
+                        "url" : ""
+                    },
+                    "3" : {
+                        "clear" : false,
+                        "url" : ""
+                    }
+                },
+                "display_flag" : false
+            },
+            "2" : {
+                "progress" : {
+                    "1" : {
+                        "clear" : true,
+                        "url" : ""
+                    },
+                    "2" : {
+                        "clear" : true,
+                        "url" : ""
+                    },
+                },
+                "display_flag" : false
+            },
+            "3" : {
+                "progress" : {
+                    "1" : {
+                        "clear" : false,
+                        "url" : ""
+                    },
+                    "2" : {
+                        "clear" : false,
+                        "url" : ""
+                    },
+                    "3" : {
+                        "clear" : true,
+                        "url" : ""
+                    }
+                },
+                "display_flag" : false
+            }
+        });
+    });
+
+    test("正常系2", () => {
+        expect(resetProgressData(testProgressData, ["2", "3"])).toStrictEqual({
+            "1" : {
+                "progress" : {
+                    "1" : {
+                        "clear" : true,
+                        "url" : ""
+                    },
+                    "2" : {
+                        "clear" : false,
+                        "url" : ""
+                    },
+                    "3" : {
+                        "clear" : true,
+                        "url" : ""
+                    }
+                },
+                "display_flag" : false
+            },
+            "2" : {
+                "progress" : {
+                    "1" : {
+                        "clear" : false,
+                        "url" : ""
+                    },
+                    "2" : {
+                        "clear" : false,
+                        "url" : ""
+                    },
+                },
+                "display_flag" : false
+            },
+            "3" : {
+                "progress" : {
+                    "1" : {
+                        "clear" : false,
+                        "url" : ""
+                    },
+                    "2" : {
+                        "clear" : false,
+                        "url" : ""
+                    },
+                    "3" : {
+                        "clear" : false,
+                        "url" : ""
+                    }
+                },
+                "display_flag" : false
+            }
+        });
+    });
+
+    test("リセット対象となるIDなし", () => {
+        expect(resetProgressData(testProgressData, [])).toStrictEqual(testProgressData);
+    });
 });
