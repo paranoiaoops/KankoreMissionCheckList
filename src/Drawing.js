@@ -1,77 +1,3 @@
-// FIXME 開発用のダミーデータ
-const debugMissionData = {
-    "1" : {
-        "mission" : "「第五戦隊」出撃せよ！",
-        "mission_type" : "monthly",
-        "terms" : "第五戦隊」(「妙高」+「那智」+「羽黒」)3隻+自由枠3隻",
-        "area" : {
-            "1" : {
-                "area_number" : "2-5",
-                "achievement_conditions" : "S"
-            }
-        }
-    },
-    "2" : {
-        "mission" : "海上護衛強化月間",
-        "mission_type" : "monthly",
-        "terms" : "",
-        "area" : {
-            "1" : {
-                "area_number" : "1-5",
-                "achievement_conditions" : "A"
-            },
-            "2" : {
-                "area_number" : "1-5",
-                "achievement_conditions" : "A"
-            },
-            "3" : {
-                "area_number" : "1-5",
-                "achievement_conditions" : "A"
-            },
-            "4" : {
-                "area_number" : "1-5",
-                "achievement_conditions" : "A"
-            },
-            "5" : {
-                "area_number" : "1-5",
-                "achievement_conditions" : "A"
-            },
-            "6" : {
-                "area_number" : "1-5",
-                "achievement_conditions" : "A"
-            },
-            "7" : {
-                "area_number" : "1-5",
-                "achievement_conditions" : "A"
-            },
-            "8" : {
-                "area_number" : "1-5",
-                "achievement_conditions" : "A"
-            },
-            "9" : {
-                "area_number" : "1-5",
-                "achievement_conditions" : "A"
-            },
-            "10" : {
-                "area_number" : "1-5",
-                "achievement_conditions" : "A"
-            }
-        }
-    },
-    "3": {
-        "mission": "「水上反撃部隊」突入せよ！",
-        "mission_type": "monthly",
-        "terms": "旗艦「駆逐艦」+重巡1隻+軽巡1隻+駆逐3隻",
-        "area": {
-            "1": {
-                "area_number": "2-5",
-                "achievement_conditions": "S"
-            }
-        }
-    }
-};
-
-// TODO indexDB のセットアップ
 import { openDb, getByKey, putData } from "./IndexDbUtility.js";
 import {createProgressData, createDisplayData, pickUpAreaData, checkAreaClearFlag} from "./Utility.js";
 
@@ -122,7 +48,6 @@ function resetMissionList() {
             document.getElementById("dialog-Menu").showModal();
         });
     });
-    document.getElementById("")
     document.getElementById("dialog-Menu").addEventListener("close", () => {
         let modalMissionId = document.getElementById("dialog-Menu").returnValue;
         resetMissionList();
