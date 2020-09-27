@@ -117,3 +117,34 @@ export async function getMissionDataJson() {
     const url = "https://paranoiaoops.github.io/KankoreMissionCheckList/Data/MissionData.json";
     return await (await fetch(url)).json();
 }
+
+/**
+ * 特定のミッションタイプのIDを抽出する処理
+ * @param {object} missionData
+ * @param {array} targetMissionType
+ * @return {array}
+ */
+export function getMissionIdByMissionType(missionData, targetMissionType) {
+    if (!targetMissionType.length) return [];
+    let val = [];
+    for (let k in missionData) {
+        if (targetMissionType.includes(missionData[k]["mission_type"])) val.push(k);
+    }
+    return val;
+}
+
+/**
+ * 指定した id の進行状況をリセットする処理
+ * @param {object} progressData
+ * @param {array} resetIds
+ * @return {object}
+ */
+export function resetProgressData(progressData, resetIds) {
+    if (!resetIds.length) return progressData;
+    for (let k in resetIds) {
+        for (let progressKey in progressData[resetIds[k]]["progress"]) {
+            progressData[resetIds[k]]["progress"][progressKey]["clear"] = false
+        }
+    }
+    return progressData;
+}

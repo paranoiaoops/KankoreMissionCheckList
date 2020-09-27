@@ -1,5 +1,6 @@
 import {test, describe, expect} from "@jest/globals";
-import {createProgressData, createDisplayData, pickUpAreaData, checkAreaData, checkAreaClearFlag}from "../src/Utility";
+import {createProgressData, createDisplayData, pickUpAreaData, checkAreaData,
+    checkAreaClearFlag, getMissionIdByMissionType, resetProgressData}from "../src/Utility";
 
 describe("任務用のJSONから進捗管理用のJSONする処理", () =>{
 
@@ -596,5 +597,265 @@ describe("表示用データからクリア状況を抽出する処理", () => {
        };
        expect(checkAreaClearFlag(testDisplayData, "1", "3")).toBeTruthy();
        expect(checkAreaClearFlag(testDisplayData, "1", "2")).toBeFalsy();
+    });
+});
+
+describe("特定のミッションタイプのデータを抽出する処理", () => {
+    const testMissionData = {
+        "1" : {
+            "mission" : "「第五戦隊」出撃せよ！",
+            "mission_type" : "monthly",
+            "terms" : "第五戦隊」(「妙高」+「那智」+「羽黒」)3隻+自由枠3隻",
+            "area" : {
+                "1" : {
+                    "area_number" : "2-5",
+                    "achievement_conditions" : "S"
+                }
+            }
+        },
+        "2" : {
+            "mission": "「潜水艦隊」出撃せよ！",
+            "mission_type": "monthly",
+            "terms": "",
+            "area": {
+                "1" : {
+                    "area_number": "6-1",
+                    "achievement_conditions": "S"
+                },
+                "2" : {
+                    "area_number": "6-1",
+                    "achievement_conditions": "S"
+                },
+                "3" : {
+                    "area_number": "6-1",
+                    "achievement_conditions": "S"
+                }
+            }
+        },
+        "9" : {
+            "mission" : "沖ノ島海域迎撃戦",
+            "mission_type" : "quarterly",
+            "terms" : "",
+            "area" : {
+                "1" : {
+                    "area_number" : "2-4",
+                    "achievement_conditions" : "S"
+                },
+                "2" : {
+                    "area_number" : "2-4",
+                    "achievement_conditions" : "S"
+                }
+            }
+        },
+        "12" : {
+            "mission" : "前線の航空偵察を実施せよ！",
+            "mission_type" : "quarterly",
+            "terms" : "水母1隻+軽巡2隻+自由枠3隻",
+            "area" : {
+                "1" : {
+                    "area_number" : "6-3",
+                    "achievement_conditions" : "A"
+                },
+                "2" : {
+                    "area_number" : "6-3",
+                    "achievement_conditions" : "A"
+                }
+            }
+        },
+        "23" : {
+            "mission" : "(2月) 「海防艦」、海を護る！",
+            "mission_type" : "yearly",
+            "terms" : "海防艦3隻+自由枠2隻の5隻以下の編成",
+            "area" : {
+                "1" : {
+                    "area_number" : "1-1",
+                    "achievement_conditions" : "A"
+                },
+                "2" : {
+                    "area_number" : "1-2",
+                    "achievement_conditions" : "A"
+                },
+                "3" : {
+                    "area_number" : "1-3",
+                    "achievement_conditions" : "A"
+                },
+                "4" : {
+                    "area_number" : "1-4",
+                    "achievement_conditions" : "A"
+                },
+                "5" : {
+                    "area_number" : "1-6",
+                    "achievement_conditions" : "ゴール"
+                }
+            }
+        }
+    };
+    test("対象があるとき", () => {
+        expect(getMissionIdByMissionType(testMissionData, ["monthly"])).toStrictEqual(["1", "2"]);
+        expect(getMissionIdByMissionType(testMissionData, ["monthly", "quarterly"])).toStrictEqual(["1", "2", "9", "12"]);
+        expect(getMissionIdByMissionType(testMissionData, ["quarterly"])).toStrictEqual(["9", "12"]);
+    });
+
+    test("対象がないとき",　() => {
+        expect(getMissionIdByMissionType(testMissionData, [])).toStrictEqual([]);
+    })
+});
+
+describe("指定したIDのデータをリセットする処理", () => {
+    const testProgressData = {
+        "1" : {
+            "progress" : {
+                "1" : {
+                    "clear" : true,
+                    "url" : ""
+                },
+                "2" : {
+                    "clear" : false,
+                    "url" : ""
+                },
+                "3" : {
+                    "clear" : true,
+                    "url" : ""
+                }
+            },
+            "display_flag" : false
+        },
+        "2" : {
+            "progress" : {
+                "1" : {
+                    "clear" : true,
+                    "url" : ""
+                },
+                "2" : {
+                    "clear" : true,
+                    "url" : ""
+                },
+            },
+            "display_flag" : false
+        },
+        "3" : {
+            "progress" : {
+                "1" : {
+                    "clear" : false,
+                    "url" : ""
+                },
+                "2" : {
+                    "clear" : false,
+                    "url" : ""
+                },
+                "3" : {
+                    "clear" : true,
+                    "url" : ""
+                }
+            },
+            "display_flag" : false
+        }
+    };
+    test("正常系", () => {
+        expect(resetProgressData(testProgressData, ["1"])).toStrictEqual({
+            "1" : {
+                "progress" : {
+                    "1" : {
+                        "clear" : false,
+                        "url" : ""
+                    },
+                    "2" : {
+                        "clear" : false,
+                        "url" : ""
+                    },
+                    "3" : {
+                        "clear" : false,
+                        "url" : ""
+                    }
+                },
+                "display_flag" : false
+            },
+            "2" : {
+                "progress" : {
+                    "1" : {
+                        "clear" : true,
+                        "url" : ""
+                    },
+                    "2" : {
+                        "clear" : true,
+                        "url" : ""
+                    },
+                },
+                "display_flag" : false
+            },
+            "3" : {
+                "progress" : {
+                    "1" : {
+                        "clear" : false,
+                        "url" : ""
+                    },
+                    "2" : {
+                        "clear" : false,
+                        "url" : ""
+                    },
+                    "3" : {
+                        "clear" : true,
+                        "url" : ""
+                    }
+                },
+                "display_flag" : false
+            }
+        });
+    });
+
+    test("正常系2", () => {
+        expect(resetProgressData(testProgressData, ["2", "3"])).toStrictEqual({
+            "1" : {
+                "progress" : {
+                    "1" : {
+                        "clear" : true,
+                        "url" : ""
+                    },
+                    "2" : {
+                        "clear" : false,
+                        "url" : ""
+                    },
+                    "3" : {
+                        "clear" : true,
+                        "url" : ""
+                    }
+                },
+                "display_flag" : false
+            },
+            "2" : {
+                "progress" : {
+                    "1" : {
+                        "clear" : false,
+                        "url" : ""
+                    },
+                    "2" : {
+                        "clear" : false,
+                        "url" : ""
+                    },
+                },
+                "display_flag" : false
+            },
+            "3" : {
+                "progress" : {
+                    "1" : {
+                        "clear" : false,
+                        "url" : ""
+                    },
+                    "2" : {
+                        "clear" : false,
+                        "url" : ""
+                    },
+                    "3" : {
+                        "clear" : false,
+                        "url" : ""
+                    }
+                },
+                "display_flag" : false
+            }
+        });
+    });
+
+    test("リセット対象となるIDなし", () => {
+        expect(resetProgressData(testProgressData, [])).toStrictEqual(testProgressData);
     });
 });
