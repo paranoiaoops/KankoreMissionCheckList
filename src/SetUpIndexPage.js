@@ -16,7 +16,7 @@ window.onload = () => {
                 globalThis.progressData = createProgressData(globalThis.missionData, indexDbProgressData);
                 // 任務の進行状態をリセットする処理
                 let today = new Date();
-                if (globalThis.progressData.hasOwnProperty("reset_year")) {
+                if (!globalThis.progressData.hasOwnProperty("reset_year")) {
                     globalThis.progressData["reset_year"] = today.getFullYear() - 1;
                     globalThis.progressData["reset_month"] = today.getMonth()+1;
                 }
