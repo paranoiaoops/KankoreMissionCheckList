@@ -702,6 +702,7 @@ describe("特定のミッションタイプのデータを抽出する処理", (
 });
 
 describe("指定したIDのデータをリセットする処理", () => {
+    let today = new Date();
     const testProgressData = {
         "1" : {
             "progress" : {
@@ -749,8 +750,11 @@ describe("指定したIDのデータをリセットする処理", () => {
                 }
             },
             "display_flag" : false
-        }
+        },
+        "reset_year" : today.getFullYear(),
+        "reset_month" : today.getMonth()+1
     };
+
     test("正常系", () => {
         expect(resetProgressData(testProgressData, ["1"])).toStrictEqual({
             "1" : {
@@ -799,12 +803,65 @@ describe("指定したIDのデータをリセットする処理", () => {
                     }
                 },
                 "display_flag" : false
-            }
+            },
+            "reset_year" : today.getFullYear(),
+            "reset_month" : today.getMonth()+1
         });
     });
 
     test("正常系2", () => {
-        expect(resetProgressData(testProgressData, ["2", "3"])).toStrictEqual({
+        const testProgressData2 = {
+            "1" : {
+                "progress" : {
+                    "1" : {
+                        "clear" : true,
+                        "url" : ""
+                    },
+                    "2" : {
+                        "clear" : false,
+                        "url" : ""
+                    },
+                    "3" : {
+                        "clear" : true,
+                        "url" : ""
+                    }
+                },
+                "display_flag" : false
+            },
+            "2" : {
+                "progress" : {
+                    "1" : {
+                        "clear" : true,
+                        "url" : ""
+                    },
+                    "2" : {
+                        "clear" : true,
+                        "url" : ""
+                    },
+                },
+                "display_flag" : false
+            },
+            "3" : {
+                "progress" : {
+                    "1" : {
+                        "clear" : false,
+                        "url" : ""
+                    },
+                    "2" : {
+                        "clear" : false,
+                        "url" : ""
+                    },
+                    "3" : {
+                        "clear" : true,
+                        "url" : ""
+                    }
+                },
+                "display_flag" : false
+            },
+            "reset_year" : today.getFullYear(),
+            "reset_month" : today.getMonth()+1
+        };;
+        expect(resetProgressData(testProgressData2, ["2", "3"])).toStrictEqual({
             "1" : {
                 "progress" : {
                     "1" : {
@@ -851,7 +908,9 @@ describe("指定したIDのデータをリセットする処理", () => {
                     }
                 },
                 "display_flag" : false
-            }
+            },
+            "reset_year" : today.getFullYear(),
+            "reset_month" : today.getMonth()+1
         });
     });
 

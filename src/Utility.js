@@ -146,5 +146,8 @@ export function resetProgressData(progressData, resetIds) {
             progressData[resetIds[k]]["progress"][progressKey]["clear"] = false
         }
     }
+    let dataObject = new Date();
+    progressData["reset_year"] = dataObject.getFullYear();
+    progressData["reset_month"] = dataObject.getMonth()+1;
     return progressData;
 }
