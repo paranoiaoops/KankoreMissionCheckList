@@ -1,5 +1,5 @@
 import {test, describe, expect} from "@jest/globals";
-import {checkResetTiming} from "../src/Time.js"
+import {checkResetTiming, checkResetFlag} from "../src/Time.js"
 
 describe("任務のリセットタイミングのテスト", () => {
     test("マンスリー", () => {
@@ -27,4 +27,17 @@ describe("任務のリセットタイミングのテスト", () => {
         expect(checkResetTiming(4, 15)).toStrictEqual([]);
         expect(checkResetTiming(6, 30)).toStrictEqual([]);
     })
+});
+
+describe("任務のリセットタイミングについてのテスト", () => {
+   test("True", ()=> {
+       expect(checkResetFlag(2020, 1, 2020, 9)).toBeTruthy();
+       expect(checkResetFlag(2020, 8, 2020, 9)).toBeTruthy();
+       expect(checkResetFlag(2019, 9, 2020, 9)).toBeTruthy();
+   });
+
+   test("False", () => {
+       expect(checkResetFlag(2020, 9, 2020, 9)).toBeFalsy();
+       expect(checkResetFlag(2020, 10, 2020, 9)).toBeFalsy();
+   });
 });
