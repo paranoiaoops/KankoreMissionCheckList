@@ -751,6 +751,7 @@ describe("指定したIDのデータをリセットする処理", () => {
             "display_flag" : false
         }
     };
+
     test("正常系", () => {
         expect(resetProgressData(testProgressData, ["1"])).toStrictEqual({
             "1" : {
@@ -804,7 +805,56 @@ describe("指定したIDのデータをリセットする処理", () => {
     });
 
     test("正常系2", () => {
-        expect(resetProgressData(testProgressData, ["2", "3"])).toStrictEqual({
+        const testProgressData2 = {
+            "1" : {
+                "progress" : {
+                    "1" : {
+                        "clear" : true,
+                        "url" : ""
+                    },
+                    "2" : {
+                        "clear" : false,
+                        "url" : ""
+                    },
+                    "3" : {
+                        "clear" : true,
+                        "url" : ""
+                    }
+                },
+                "display_flag" : false
+            },
+            "2" : {
+                "progress" : {
+                    "1" : {
+                        "clear" : true,
+                        "url" : ""
+                    },
+                    "2" : {
+                        "clear" : true,
+                        "url" : ""
+                    },
+                },
+                "display_flag" : false
+            },
+            "3" : {
+                "progress" : {
+                    "1" : {
+                        "clear" : false,
+                        "url" : ""
+                    },
+                    "2" : {
+                        "clear" : false,
+                        "url" : ""
+                    },
+                    "3" : {
+                        "clear" : true,
+                        "url" : ""
+                    }
+                },
+                "display_flag" : false
+            }
+        };
+        expect(resetProgressData(testProgressData2, ["2", "3"])).toStrictEqual({
             "1" : {
                 "progress" : {
                     "1" : {
