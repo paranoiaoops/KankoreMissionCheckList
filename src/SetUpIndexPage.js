@@ -26,6 +26,8 @@ window.onload = () => {
                     globalThis.progressData = resetProgressData(globalThis.progressData,
                         getMissionIdByMissionType(globalThis.missionData,
                             checkResetTiming(today.getMonth()+1)));
+                    globalThis.progressData["reset_year"] = today.getFullYear();
+                    globalThis.progressData["reset_month"] = today.getMonth()+1;
                 }
                 globalThis.progressData["id"] = "1";
                 globalThis.displayData = createDisplayData(globalThis.missionData, globalThis.progressData);

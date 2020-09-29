@@ -702,7 +702,6 @@ describe("特定のミッションタイプのデータを抽出する処理", (
 });
 
 describe("指定したIDのデータをリセットする処理", () => {
-    let today = new Date();
     const testProgressData = {
         "1" : {
             "progress" : {
@@ -750,9 +749,7 @@ describe("指定したIDのデータをリセットする処理", () => {
                 }
             },
             "display_flag" : false
-        },
-        "reset_year" : today.getFullYear(),
-        "reset_month" : today.getMonth()+1
+        }
     };
 
     test("正常系", () => {
@@ -803,9 +800,7 @@ describe("指定したIDのデータをリセットする処理", () => {
                     }
                 },
                 "display_flag" : false
-            },
-            "reset_year" : today.getFullYear(),
-            "reset_month" : today.getMonth()+1
+            }
         });
     });
 
@@ -857,10 +852,8 @@ describe("指定したIDのデータをリセットする処理", () => {
                     }
                 },
                 "display_flag" : false
-            },
-            "reset_year" : today.getFullYear(),
-            "reset_month" : today.getMonth()+1
-        };;
+            }
+        };
         expect(resetProgressData(testProgressData2, ["2", "3"])).toStrictEqual({
             "1" : {
                 "progress" : {
@@ -908,9 +901,7 @@ describe("指定したIDのデータをリセットする処理", () => {
                     }
                 },
                 "display_flag" : false
-            },
-            "reset_year" : today.getFullYear(),
-            "reset_month" : today.getMonth()+1
+            }
         });
     });
 
