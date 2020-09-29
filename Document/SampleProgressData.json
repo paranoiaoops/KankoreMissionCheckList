@@ -15,5 +15,8 @@
       }
     },
     "display_flag" : false
-  }
+  },
+  "id" : 1,
+  "reset_year" : 2020,
+  "reset_month" : 12
 }

@@ -18,7 +18,7 @@ url: https://paranoiaoops.github.io/KankoreMissionCheckList/reverse.html
 検証した環境 ：　PC版 Chrome
 
 上記以外のブラウザは未検証です。
-HTML5 の modal が対応していれば多分どの基本的に大丈夫かと
+HTML5 の modal が対応していれば多分どのブラウザでも動くと思います。
 
 ## 使い方
 
