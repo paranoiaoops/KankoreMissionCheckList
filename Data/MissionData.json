@@ -541,5 +541,36 @@
         "achievement_conditions" : "A"
       }
     }
+  },
+  "26" : {
+    "mission" : "(9月) 歴戦「第十方面艦隊」、全力出撃！",
+    "mission_type" : "yearly",
+    "terms" : "(「羽黒」/「足柄」/「妙高」/「高雄」/「神風」より)2隻+自由枠4隻",
+    "area" : {
+      "1" : {
+        "area_number" : "4-2",
+        "achievement_conditions" : "S"
+      },
+      "2" : {
+        "area_number" : "4-2",
+        "achievement_conditions" : "S"
+      },
+      "3" : {
+        "area_number" : "7-2-2",
+        "achievement_conditions" : "S"
+      },
+      "4" : {
+        "area_number" : "7-2-2",
+        "achievement_conditions" : "S"
+      },
+      "5" : {
+        "area_number" : "7-3-2",
+        "achievement_conditions" : "S"
+      },
+      "6" : {
+        "area_number" : "7-3-2",
+        "achievement_conditions" : "S"
+      }
+    }
   }
 }
