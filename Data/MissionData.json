@@ -614,22 +614,10 @@
         "achievement_conditions" : "A"
       },
       "2" : {
-        "area_number" : "2-2",
+        "area_number" : "2-3",
         "achievement_conditions" : "A"
       },
       "3" : {
-        "area_number" : "2-3",
-        "achievement_conditions" : "A"
-      },
-      "4" : {
-        "area_number" : "2-3",
-        "achievement_conditions" : "A"
-      },
-      "5" : {
-        "area_number" : "2-4",
-        "achievement_conditions" : "A"
-      },
-      "6" : {
         "area_number" : "2-4",
         "achievement_conditions" : "A"
       }
