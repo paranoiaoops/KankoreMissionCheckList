@@ -715,5 +715,51 @@
         "achievement_conditions" : "A"
       }
     }
+  },
+  "32" : {
+    "mission" : "(5月) 精鋭「第十九駆逐隊」、全力出撃!",
+    "mission_type" : "yearly",
+    "terms" : "磯波改二/浦波改二/綾波改二/敷波改二 を含む艦隊",
+    "area" : {
+      "1" : {
+        "area_number" : "1-5",
+        "achievement_conditions" : "S"
+      },
+      "2" : {
+        "area_number" : "2-3",
+        "achievement_conditions" : "S"
+      },
+      "3" : {
+        "area_number" : "3-2",
+        "achievement_conditions" : "S"
+      },
+      "4" : {
+        "area_number" : "5-3",
+        "achievement_conditions" : "S"
+      }
+    }
+  },
+  "33" : {
+    "mission" : "(5月) 日英米合同水上艦隊、抜錨せよ!",
+    "mission_type" : "yearly",
+    "terms" : "米英艦3隻を含み空母無し",
+    "area" : {
+      "1" : {
+        "area_number" : "3-1",
+        "achievement_conditions" : "A"
+      },
+      "2" : {
+        "area_number" : "3-3",
+        "achievement_conditions" : "A"
+      },
+      "3" : {
+        "area_number" : "7-3-2",
+        "achievement_conditions" : "A"
+      },
+      "4" : {
+        "area_number" : "4-3",
+        "achievement_conditions" : "A"
+      }
+    }
   }
 }
